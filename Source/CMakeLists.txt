@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(moja VERSION 1.0.6 LANGUAGES CXX)
 
+enable_language(C) #newer Poco config scrips require c to be enabled
+
 #turn on using solution folders
 set_property( GLOBAL PROPERTY USE_FOLDERS ON)
 
