@@ -15,6 +15,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 
 using moja::datarepository::IProviderRelationalInterface;
 
