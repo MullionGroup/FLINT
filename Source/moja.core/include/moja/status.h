@@ -53,7 +53,7 @@ class runtime_status_error : public std::runtime_error {
   public:
    explicit runtime_status_error(status status);
 
-   status const& status() const { return status_; }
+   const status& status() const { return status_; }
 
   private:
    moja::status status_;
