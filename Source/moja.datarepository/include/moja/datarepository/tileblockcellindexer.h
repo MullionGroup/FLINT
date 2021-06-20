@@ -362,7 +362,7 @@ struct DATAREPOSITORY_API blockCollectionStats {
          const auto blockKey = std::make_tuple(curTileIdx, curBlockIdx);
          const auto it = blockStatMap.find(blockKey);
          if (it != blockStatMap.end()) {
-            BOOST_THROW_EXCEPTION(moja::datarepository::DataRepositoryException());
+            throw std::runtime_error("Error block stats already exist.");
          }
          _blockStats.emplace_back(blockStats{});
          curBlock = &_blockStats.back();

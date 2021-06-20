@@ -1,5 +1,7 @@
 #include "moja/datarepository/tileblockcellindexer.h"
 
+#include "moja/floatcmp.h"
+
 #include <boost/format.hpp>
 #include <boost/format/group.hpp>
 
@@ -116,41 +118,41 @@ void TileBlockCellIndexer::SanityChecksLatLon(double tileLatSize, double tileLon
 	if (!FloatCmp::equalTo(result, 0.0)) {
 		std::stringstream ss;
 		ss << "fmod(" << tileLatSize << ", 180.0) = " << result;
-		BOOST_THROW_EXCEPTION(TileBlockCellIndexerInvalidParameterException() << Component(ss.str()) << Constraint("180.0 % tileLatSize == 0"));
+		throw std::invalid_argument(ss.str() + "180.0 % tileLatSize == 0");
 	}
 	result = fmod(360.0, tileLonSize);
 	if (!FloatCmp::equalTo(result, 0.0)) {
 		std::stringstream ss;
 		ss << "fmod(" << tileLonSize << ", 360.0) = " << result;
-		BOOST_THROW_EXCEPTION(TileBlockCellIndexerInvalidParameterException() << Component(ss.str()) << Constraint("360.0 % tileLonSize == 0"));
+                throw std::invalid_argument(ss.str() + "360.0 % tileLonSize == 0");
 	}
 
 	result = fmod(tileLatSize, blockLatSize);
 	if (!FloatCmp::equalTo(result, 0.0)) {
 		std::stringstream ss;
 		ss << "fmod(" << blockLatSize << ", tileLatSize) = " << result;
-		BOOST_THROW_EXCEPTION(TileBlockCellIndexerInvalidParameterException() << Component(ss.str()) << Constraint("tileLatSize % blockLatSize == 0"));
+                throw std::invalid_argument(ss.str() + "tileLatSize % blockLatSize == 0");
 	}
 
 	result = fmod(tileLonSize, blockLonSize);
 	if (!FloatCmp::equalTo(result, 0.0)) {
 		std::stringstream ss;
 		ss << "fmod(" << blockLonSize << ", tileLonSize) = " << result;
-		BOOST_THROW_EXCEPTION(TileBlockCellIndexerInvalidParameterException() << Component(ss.str()) << Constraint("tileLonSize % blockLonSize == 0"));
+                throw std::invalid_argument(ss.str() + "tileLonSize % blockLonSize == 0");
 	}
 
 	result = fmod(blockLatSize, cellLatSize);
 	if (!FloatCmp::equalTo(result, 0.0)) {
 		std::stringstream ss;
 		ss << "fmod(" << cellLatSize << ", blockLatSize) = " << result;
-		BOOST_THROW_EXCEPTION(TileBlockCellIndexerInvalidParameterException() << Component(ss.str()) << Constraint("blockLatSize % cellLatSize == 0"));
+                throw std::invalid_argument(ss.str() + "blockLatSize % cellLatSize == 0");
 	}
 
 	result = fmod(blockLonSize, cellLonSize);
 	if (!FloatCmp::equalTo(result, 0.0)) {
 		std::stringstream ss;
 		ss << "fmod(" << cellLonSize << ", blockLonSize) = " << result;
-		BOOST_THROW_EXCEPTION(TileBlockCellIndexerInvalidParameterException() << Component(ss.str()) << Constraint("blockLonSize % cellLonSize == 0"));
+                throw std::invalid_argument(ss.str() + "blockLonSize % cellLonSize == 0");
 	}
 #endif
 }
