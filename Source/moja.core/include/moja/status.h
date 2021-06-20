@@ -49,14 +49,4 @@ inline bool operator==(status const& lhs, status const& rhs) {
 
 inline bool operator!=(status const& lhs, status const& rhs) { return !(lhs == rhs); }
 
-class runtime_status_error : public std::runtime_error {
-  public:
-   explicit runtime_status_error(status status);
-
-   const moja::status& status() const { return status_; }
-
-  private:
-   moja::status status_;
-};
-
 }  // namespace moja
