@@ -8,7 +8,7 @@ namespace moja::filesystem {
 
 using namespace std::filesystem;
 
-inline path CORE_API expand(const std::string& path);
-inline path CORE_API expand(const path& path);
+path CORE_API expand(const std::string& path);
+path CORE_API expand(const path& path);
 
 }  // namespace moja::filesystem
