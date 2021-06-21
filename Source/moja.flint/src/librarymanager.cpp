@@ -20,6 +20,8 @@
 #include <boost/python.hpp>
 #endif
 
+#include "moja/filesystem.h"
+
 #include <Poco/DirectoryIterator.h>
 #include <Poco/SharedLibrary.h>
 
@@ -98,7 +100,7 @@ void LibraryManager::AddLibrary(LibraryType libraryType, const std::string& inLi
             }
          } else {
 	    // We can also allow expansion of Environment variables here to help library finding
-            auto LibraryPathMap = FindLibraryPathsInDirectory(Poco::Path::expand(path), fileName, false);
+            auto LibraryPathMap = FindLibraryPathsInDirectory(moja::expand(path).string(), fileName, false);
             if (LibraryPathMap.size() == 1) {
                // Add this library to the set of libraries that we know about
                auto library = std::make_shared<LibraryInfoExternal>();

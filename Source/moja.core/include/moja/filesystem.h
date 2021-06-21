@@ -4,11 +4,12 @@
 
 #include <filesystem>
 
-namespace moja::filesystem {
-
+namespace moja{
+namespace filesystem {
 using namespace std::filesystem;
+}
 
-path CORE_API expand(const std::string& path);
-path CORE_API expand(const path& path);
+filesystem::path CORE_API expand(const std::string& path);
+filesystem::path CORE_API expand(const filesystem::path& path);
 
 }  // namespace moja::filesystem
